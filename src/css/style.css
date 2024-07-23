@@ -2,27 +2,76 @@
 
 body { font-family: 'Roboto', sans-serif; color: #100c08; background-color: #edefec; }
 
-#app { padding-top: 20px; }
+#app {}
 
 .hidden { display: none; }
 
+.chat { display: flex; margin: 66px 33px; }
+
+.chat__user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    width: 217px;
+    height: 276px;
+    margin-top: 17px;
+    padding: 25px 14px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border: 1px solid #464646;
+    border-right: none;
+}
+
+.chat__user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+    line-height: 1;
+    color: #4f4f4f;
+}
+
+.chat__user::before {
+    content: "";
+    display: inline-block;
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    border: 1px solid #5c5c5c;
+}
+
+.chat__user--yourself { color: #fe6d58; }
+
+.chat__container {
+    display: flex;
+    flex-direction: column;
+    width: 628px;
+    height: 534px;
+    border-radius: 16px;
+    border: 1px solid #464646;
+}
+
+.chat__messages { flex: 1 1 0; overflow-y: auto; }
+
 .modal { position: fixed; inset: 0; z-index: -10; }
 
-.modal.active { z-index: 10; background-color: rgba(0, 0, 0, 0.7); }
+.modal.active { z-index: 10; background-color: rgba(70, 70, 70, 0.7); }
 
 .modal__content {
+    --margin: 36px;
     position: absolute;
-    top: calc(50% - 20px);
-    left: calc(50% - 20px);
+    top: calc(50% - var(--margin, 0));
+    left: calc(50% - var(--margin, 0));
     z-index: 20;
     display: flex;
     flex-direction: column;
-    width: calc(100% - 40px);
+    width: calc(100% - (var(--margin, 0) * 2));
     max-width: 500px;
-    margin: 20px;
+    margin: var(--margin, 0);
     background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    border: 1px solid #464646;
+    box-shadow: 0 3px 5px 2px rgba(70, 70, 70, 0.3);
     transition: all 0.3s ease-out;
     transform: translateX(-50%) translateY(-100vh);
 }
@@ -30,24 +79,26 @@ body { font-family: 'Roboto', sans-serif; color: #100c08; background-color: #ede
 .modal.active .modal__content { transform: translateX(-50%) translateY(-50%); }
 
 .modal__header {
-    padding: 15px 20px;
+    padding: 12px 26px;
     font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
     text-align: center;
-    background-color: #dee2e1;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    color: #464646;
 }
 
-.modal__body { padding: 20px; }
+.modal__body { padding: 16px 26px; }
 
-.modal__form-group > * + * { margin-top: 5px; }
+.modal__form-group > * + * { margin-top: 6px; }
 
 .modal__form-input {
     display: block;
     width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #c9cacc;
+    padding: 10px 4px;
+    font-size: 18px;
+    line-height: 1;
+    color: #464646;
+    border: 1px solid #464646;
 }
 
 .modal__form-input:focus {
@@ -55,21 +106,30 @@ body { font-family: 'Roboto', sans-serif; color: #100c08; background-color: #ede
     outline: rgba(32, 177, 223, 0.25) solid 2px;
 }
 
-.modal__form-hint { font-size: 14px; text-align: center; color: #ff0000; }
+.modal__form-hint { font-size: 16px; text-align: center; color: #ff0000; }
 
-.modal__footer { display: flex; padding: 0 20px 20px; }
+.modal__form-hint:empty { display: none; }
+
+.modal__footer { display: flex; padding: 0 26px 16px; }
 
 .modal__ok {
     display: block;
     width: 100%;
-    padding: 5px 10px;
+    max-width: 324px;
+    margin: 0 auto;
+    padding: 16px 14px;
+    font-size: 18px;
+    line-height: 1;
     text-align: center;
-    color: #ffffff;
-    background-color: #58bf97;
-    border-radius: 5px;
-    border: 1px solid #58bf97;
+    color: #464646;
+    border-radius: 16px;
+    border: 1px solid #464646;
     cursor: pointer;
 }
 
 .modal__ok:focus-visible,
-.modal__ok:hover { outline: rgba(88, 191, 151, 0.25) solid 2px; }
+.modal__ok:hover {
+    color: #58bf97;
+    border-color: #58bf97;
+    outline: rgba(88, 192, 151, 0.25) solid 2px;
+}
