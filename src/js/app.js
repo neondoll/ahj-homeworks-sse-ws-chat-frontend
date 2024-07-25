@@ -1,4 +1,4 @@
-import Chat from './chat';
+import Chat from './Chat';
 
 const app = document.querySelector('#app');
 
