@@ -1,5 +1,5 @@
 export default class ChatApi {
-  constructor() { this._api = new WebSocket('ws://localhost:3000'); }
+  constructor() { this._api = new WebSocket('wss://ahj-homeworks-sse-ws-chat-backend-64z9.onrender.com'); }
 
   addEventListener(type, callback, options = undefined) {
     this._api.addEventListener(type, callback, options);

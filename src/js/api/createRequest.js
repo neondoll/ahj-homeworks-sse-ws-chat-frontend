@@ -8,7 +8,7 @@ const createRequest = async (options) => {
     init.body = JSON.stringify(options.body);
   }
 
-  return await fetch('http://localhost:3000' + options.url, init);
+  return await fetch('https://ahj-homeworks-sse-ws-chat-backend-64z9.onrender.com' + options.url, init);
 };
 
 export default createRequest;
